@@ -1,0 +1,56 @@
+
+Course Material Integration (Already done in server.js)
+
+Fetch PDFs/videos from Drive.
+
+Improvement: Add error handling for missing files.
+
+Search & Filter (Basic version)
+
+Client-side search using JavaScript (no server cost).
+
+Filter by file type (PDF/video) using Drive’s mimeType.
+
+Grid/List View Toggle
+
+Pure CSS/JS toggle for better UX. Save preference in localStorage.
+
+Dark Mode Toggle
+
+CSS variables + JS. Save preference in localStorage.
+
+Dynamic Breadcrumbs
+
+Use Drive’s parents field to show folder hierarchy.
+
+Mobile Optimization
+
+Responsive CSS (Flexbox/Grid). Test on Chrome DevTools.
+
+Phase 2: Nice-to-Have (Still Free)
+Pinned/Recommended Resources
+
+Hardcode a few "pinned" file IDs in .env. Highlight them in the UI.
+
+Download/View Stats
+
+Use Drive’s webViewLink + webContentLink to track clicks (client-side).
+
+FAQ Section
+
+Static HTML page with common questions.
+
+Simple Bookmarking
+
+Save scroll positions in localStorage (per document).
+
+Phase 3: Advanced (If Time Permits)
+Discussion Section
+
+Use Firebase Free Tier (Firestore) for comments.
+
+"Add a Question" Button 
+
+Use Google Forms or mailto: links to email instructors.
+
+Announcements
