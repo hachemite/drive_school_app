@@ -91,7 +91,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ currentDrive, onSearc
         <input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
           placeholder="Search files and folders (optional)..."
           className="search-input"
         />

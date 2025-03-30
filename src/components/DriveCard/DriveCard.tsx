@@ -11,6 +11,8 @@ const DriveCard: React.FC<DriveCardProps> = ({ drive }) => {
 
   const handleClick = () => {
     history.push(`/drive/${drive.driveName}`);
+    window.location.reload();
+
   };
 
   return (

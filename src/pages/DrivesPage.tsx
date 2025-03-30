@@ -20,6 +20,7 @@ const DrivesPage: React.FC = () => {
           {drives.map((drive) => (
             <DriveCard key={drive._id} drive={drive} />
           ))}
+
         </div>
       )}
     </div>

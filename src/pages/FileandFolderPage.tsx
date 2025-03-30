@@ -17,6 +17,8 @@ const FileandfolderPage: React.FC = () => {
     if (file.isFolder) {
       const newPath = navigateToFolder(file.name);
       history.push(newPath);
+      window.location.reload();
+
     } else {
       window.open(file.webViewLink || file.webContentLink, '_blank');
     }
