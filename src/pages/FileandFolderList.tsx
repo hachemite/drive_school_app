@@ -8,7 +8,6 @@ interface FileandfolderListProps {
 }
 
 const FileandFolderList: React.FC<FileandfolderListProps> = ({ files, onItemClick }) => {
-  // State to track favorites for immediate UI feedback
   const [favorites, setFavorites] = useState<Item[]>([]);
 
   // Load favorites from localStorage on component mount
@@ -17,20 +16,17 @@ const FileandFolderList: React.FC<FileandfolderListProps> = ({ files, onItemClic
     setFavorites(storedFavorites);
   }, []);
 
-  // Function to handle adding/removing favorites
+  // Toggle favorite status
   const toggleFavorite = (file: Item) => {
     const updatedFavorites = [...favorites];
     const existingIndex = updatedFavorites.findIndex(fav => fav.id === file.id);
 
     if (existingIndex >= 0) {
-      // Remove from favorites
       updatedFavorites.splice(existingIndex, 1);
     } else {
-      // Add to favorites
       updatedFavorites.push(file);
     }
 
-    // Update both state and localStorage
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
@@ -38,6 +34,22 @@ const FileandFolderList: React.FC<FileandfolderListProps> = ({ files, onItemClic
   // Check if a file is favorite
   const isFavorite = (fileId: string) => {
     return favorites.some(fav => fav.id === fileId);
+  };
+
+  // Handle file download
+  const handleDownload = (file: Item) => {
+    if (file.webContentLink) {
+      // Create a temporary anchor element to trigger download
+      const link = document.createElement('a');
+      link.href = file.webContentLink;
+      link.setAttribute('download', file.name);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      console.warn('No download link available for this file');
+      // You could add a toast notification here
+    }
   };
 
   return (
@@ -64,35 +76,63 @@ const FileandFolderList: React.FC<FileandfolderListProps> = ({ files, onItemClic
               </span>
             )}
           </div>
+          
           {!file.isFolder && (
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleFavorite(file);
-              }}
-              style={{
-                marginLeft: '10px',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: isFavorite(file.id) ? 'gold' : 'gray',
-                fontSize: '1.2em',
-                transition: 'transform 0.2s, color 0.2s'
-              }}
-              onMouseDown={(e) => {
-                // Add a small click effect
-                e.currentTarget.style.transform = 'scale(0.9)';
-              }}
-              onMouseUp={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-              title={isFavorite(file.id) ? 'Remove from favorites' : 'Add to favorites'}
-            >
-              {isFavorite(file.id) ? '★' : '☆'}
-            </button>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              {/* Download Button */}
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDownload(file);
+                }}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#4a90e2',
+                  fontSize: '1.2em',
+                  padding: '4px',
+                  borderRadius: '4px',
+                  transition: 'background-color 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#f0f0f0';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
+                title="Download file"
+              >
+                ⬇️
+              </button>
+              
+              {/* Favorite Button */}
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite(file);
+                }}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: isFavorite(file.id) ? 'gold' : 'gray',
+                  fontSize: '1.2em',
+                  padding: '4px',
+                  borderRadius: '4px',
+                  transition: 'color 0.2s, background-color 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#f0f0f0';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
+                title={isFavorite(file.id) ? 'Remove from favorites' : 'Add to favorites'}
+              >
+                {isFavorite(file.id) ? '★' : '☆'}
+              </button>
+            </div>
           )}
         </div>
       ))}

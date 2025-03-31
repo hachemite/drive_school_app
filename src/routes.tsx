@@ -6,7 +6,7 @@ import { RouteProps } from 'react-router-dom';
 import Home from './pages/Home';
 import Recent from './pages/Recent';
 import Favorites from './pages/Favorites';
-import SignUp from './pages/SignUp';
+import LogIn from './pages/LogIn';
 import Logout from './pages/Logout';
 import Faq from './pages/Faq';
 import About from './pages/About';
@@ -23,7 +23,7 @@ export const routes: RouteProps[] = [
   { path: '/drives', component: DrivesPage },
   { path: '/recent', component: Recent },
   { path: '/favorites', component: Favorites },
-  { path: '/signup', component: SignUp },
+  { path: '/login', component: LogIn },
   { path: '/logout', component: Logout },
   { path: '/faq', component: Faq },
   { path: '/about', component: About },
