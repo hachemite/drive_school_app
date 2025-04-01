@@ -66,6 +66,7 @@ const Navbar: React.FC = () => {
       )}
       <NavLink to="/faq">FAQ</NavLink>
       <NavLink to="/about">About</NavLink>
+      <NavLink to="/communication">Communication</NavLink>
     </nav>
   );
 };

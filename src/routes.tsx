@@ -13,6 +13,7 @@ import About from './pages/About';
 import DrivesPage from './pages/DrivesPage';
 import FileandfolderPage from './pages/FileandFolderPage';
 import DrivesManager from './pages/DrivesManager';
+import QuestionButton from './pages/Communication';
 
 type AppRoute = RouteProps & {
   component: React.ComponentType<any>; // The page component
@@ -20,7 +21,9 @@ type AppRoute = RouteProps & {
 }
 
 export const routes: RouteProps[] = [
+  
   { path: '/', exact: true, component: Home },
+  {path:'/Communication',component:QuestionButton},
   { path: '/drives', component: DrivesPage },
   { path: '/recent', component: Recent },
   { path: '/favorites', component: Favorites },
