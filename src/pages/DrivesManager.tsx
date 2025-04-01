@@ -1,8 +1,7 @@
 // File: drive_school_app/src/pages/DrivesPage.tsx
 import React, { useState, useEffect } from 'react';
 import { getDrives,addDrive } from '../api/driveApi';
-import './DrivesPage.css';
-
+import { getAuthToken } from '../utils/auth';
 interface DriveConfig {
   _id: string;
   driveName: string;
@@ -10,9 +9,14 @@ interface DriveConfig {
   clientEmail: string;
   privateKey: string;
   isDefault: boolean;
+  
+}
+interface DrivesManagerProps {
+  token: string;
 }
 
-const DrivesManager: React.FC = () => {
+
+const DrivesManager: React.FC<DrivesManagerProps> = ({ token }) => {
   const [drives, setDrives] = useState<DriveConfig[]>([]);
   const [formData, setFormData] = useState({
     driveName: '',
@@ -22,23 +26,35 @@ const DrivesManager: React.FC = () => {
     isDefault: false,
   });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchDrives = async () => {
       try {
+        setLoading(true);
+        const token = getAuthToken();
+        if (!token) throw new Error('Not authenticated');
+        
         const data = await getDrives();
         setDrives(data);
-      } catch (err) {
-        setError('Failed to fetch drives');
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
     fetchDrives();
   }, []);
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const newDrive = await addDrive(formData);
+      setLoading(true);
+      const token = getAuthToken();
+      if (!token) throw new Error('Not authenticated');
+      
+      const newDrive = await addDrive(formData, token);
       setDrives([...drives, newDrive]);
       setFormData({
         driveName: '',
@@ -47,8 +63,10 @@ const DrivesManager: React.FC = () => {
         privateKey: '',
         isDefault: false,
       });
-    } catch (err) {
-      setError('Failed to add drive');
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 

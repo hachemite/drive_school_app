@@ -12,6 +12,7 @@ import Faq from './pages/Faq';
 import About from './pages/About';
 import DrivesPage from './pages/DrivesPage';
 import FileandfolderPage from './pages/FileandFolderPage';
+import DrivesManager from './pages/DrivesManager';
 
 type AppRoute = RouteProps & {
   component: React.ComponentType<any>; // The page component
@@ -27,6 +28,7 @@ export const routes: RouteProps[] = [
   { path: '/logout', component: Logout },
   { path: '/faq', component: Faq },
   { path: '/about', component: About },
+  {path:'/drivemanager',component: DrivesManager},
   // Fix this route to match with DriveCard navigation
   { path: '/drive/:driveName', component: FileandfolderPage },
   // Remove this redundant route as we're using query params for folders

@@ -12,7 +12,8 @@ const Logout: React.FC = () => {
       try {
         await logoutUser(); // Call API to invalidate token
         removeAuthToken(); // Clear local storage
-        history.push('/login'); // Redirect to login page
+        history.push('/'); // Redirect to login page
+        window.location.reload();
       } catch (error) {
         console.error('Logout error:', error);
         // Still clear local storage even if API call fails

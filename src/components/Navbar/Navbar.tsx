@@ -41,9 +41,10 @@ const Navbar: React.FC = () => {
       <NavLink to="/">Home</NavLink>
       <NavLink to="/recent">Recent</NavLink>
       <NavLink to="/favorites">Favorites</NavLink>
+      <NavLink to="/drives">Drives</NavLink>
       {user ? (
         <>
-          {isAdmin && <NavLink to="/drives">Manage Drives</NavLink>}
+          {isAdmin && <NavLink to="/drivemanager">Manage Drives</NavLink>}
           <button 
             onClick={handleLogout}
             className="logout-button"
