@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Item } from '../../types/item';
-import { getSessionId,getDeviceType } from '../../utils/session';
-import { trackFileAction ,fetchFileStats } from '../../services/drive.service';
+import { getSessionId, getDeviceType } from '../../utils/session';
+import { trackFileAction, fetchFileStats } from '../../services/drive.service';
+import { X, Download, Eye, Users, Clock, FileText, Image, Video, Music, FileArchive } from 'lucide-react';
 import './FileViewerModal.css';
-import { getCurrentUser } from '../../api/authApi';
-import { logoutUser } from '../../api/authApi';
-import { isAuthenticated } from '../../utils/auth';
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
-
-
 
 interface FileViewerModalProps {
   file: Item | null;
@@ -18,94 +12,72 @@ interface FileViewerModalProps {
   driveName?: string;
 }
 
-interface User {
-  role: string;
-  username: string;
-  _id: string;
-}
-
 const FileViewerModal: React.FC<FileViewerModalProps> = ({ file, onClose, addRecentItem, driveName = 'default' }) => {
-  const [content, setContent] = useState<React.ReactElement | null>(null);
-  const [user, setUser] = useState<User | null>(null);
+  const [content, setContent] = useState<React.ReactNode>(null);
+  const [fileStats, setFileStats] = useState<any>(null);
 
-  const [fileStats, setFileStats] = useState<{
-    views: number;
-    downloads: number;
-    previews: number;
-    lastAccess: string;
-    uniqueSessions: number;
-  } | null>(null);
+  const getFileColor = (mimeType: string) => {
+    if (mimeType.includes('image/')) return '#F1A7A1';
+    if (mimeType.includes('video/')) return '#ADB2D4';
+    if (mimeType.includes('audio/')) return '#F1C6D4';
+    if (mimeType.includes('pdf')) return '#F6B93B';
+    if (mimeType.includes('word') || mimeType.includes('document')) return '#C7D9DD';
+    return '#D5E5D5';
+  };
 
-  // Extract file ID from webViewLink or webContentLink
+  const getFileIcon = (mimeType: string) => {
+    if (mimeType.includes('image/')) return <Image size={24} />;
+    if (mimeType.includes('video/')) return <Video size={24} />;
+    if (mimeType.includes('audio/')) return <Music size={24} />;
+    if (mimeType.includes('pdf')) return <FileText size={24} />;
+    return <FileArchive size={24} />;
+  };
+
   const extractFileId = (url?: string): string | null => {
     if (!url) return null;
-    
-    // Match Google Drive file ID pattern
     const match = url.match(/[-\w]{25,}/);
     return match ? match[0] : null;
   };
 
   const handleDownload = async () => {
-    if (!file || !file.id) {
-      console.error('Cannot track - file or file.id is missing');
-      return;
-    }    
-    trackFileAction(file.id, 'download', {
+    if (!file?.id) return;
+    
+    await trackFileAction(file.id, 'download', {
       sessionId: getSessionId(),
-      userId: await getCurrentUser(),
       deviceType: getDeviceType(),
       driveName,
       fileName: file.name
     });
 
-    // Trigger actual download
     if (file.webContentLink) {
-      window.location.href = file.webContentLink;
+      window.open(file.webContentLink, '_blank');
     }
   };
 
-
-  
   useEffect(() => {
-
     if (!file) return;
 
-    const trackView = async () => {
+    // Track view action (fire and forget)
+    trackFileAction(file.id, 'view', {
+      sessionId: getSessionId(),
+      deviceType: getDeviceType(),
+      driveName,
+      fileName: file.name
+    }).catch(console.error);
 
-
-      // Track view action
-      trackFileAction(file.id, 'view', {
-        sessionId: getSessionId(),
-        userId: "anonymous" ,
-        deviceType: getDeviceType(),
-        driveName: driveName || 'default', // Ensure driveName is never undefined
-        fileName: file.name || 'unknown' // Ensure fileName is provided
-      });
-    }
-
-    trackView();
-
-    // Fetch file statistics
-    const loadStats = async () => {
-      const stats = await fetchFileStats(file.id);
-      setFileStats(stats);
-    };
-
-    loadStats();
-
-    if (driveName) {
-      addRecentItem(file, driveName);
-    }
+    // Load stats (fire and forget)
+    fetchFileStats(file.id)
+      .then(setFileStats)
+      .catch(console.error);
 
     const fileId = extractFileId(file.webViewLink || file.webContentLink);
-    // For images, still use direct link for better quality
+
+    // Set content based on file type
     if (file.mimeType.includes('image/')) {
       setContent(
-        <div className="image-preview-container">
+        <div className="image-container">
           <img 
             src={`https://drive.google.com/uc?export=view&id=${fileId}`}
-  
-            className="img-fluid preview-image" 
             alt={file.name}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
@@ -118,91 +90,98 @@ const FileViewerModal: React.FC<FileViewerModalProps> = ({ file, onClose, addRec
     } 
     else if (file.mimeType.includes('video/')) {
       setContent(
-        <video 
-          src={file.webContentLink} 
-          controls 
-          className="preview-container"
-        />
-      );
-    } 
-    else if (file.mimeType.includes('audio/')) {
-      setContent(
-        <audio 
-          src={file.webContentLink} 
-          controls 
-          className="w-100"
-        />
+        <div className="video-container">
+          <video 
+            src={file.webContentLink} 
+            controls 
+          />
+        </div>
       );
     }
     else if (fileId) {
-      // Use Google Drive Viewer for most other file types
       setContent(
-        <iframe 
-          src={`https://docs.google.com/viewer?srcid=${fileId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`}
-          className="preview-iframe"
-          title={file.name}
-        />
+        <div className="iframe-container">
+          <iframe 
+            src={`https://docs.google.com/viewer?srcid=${fileId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`}
+            title={file.name}
+          />
+        </div>
       );
-    }
-    else {
-      // Fallback for files without ID or special cases
+    } else {
       setContent(
-        <div className="alert alert-info">
-          <p>This file type cannot be previewed directly.</p>
-          {file.webViewLink && (
-            <a href={file.webViewLink} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-primary">
-              Open in Drive
-            </a>
-          )}
+        <div className="fallback-content">
+          <p>Preview not available</p>
           {file.webContentLink && (
-            <a 
-              href={file.webContentLink} 
-              download={file.name} 
-              className="btn btn-sm btn-success ms-2"
-            >
-              Download
-            </a>
+            <button onClick={handleDownload} className="download-btn">
+              <Download size={16} /> Download File
+            </button>
           )}
         </div>
       );
     }
-  }, [file]);  if (!file) return null;
+
+    addRecentItem(file, driveName);
+  }, [file]);
+
+  if (!file) return null;
 
   return (
-    <div className={`file-modal-overlay ${file ? 'active' : ''}`} onClick={onClose}>
-      <div className="file-modal-container" onClick={e => e.stopPropagation()}>
-        <div className="file-modal-header">
-          <h3 className="file-modal-title">{file.name}</h3>
-          <button className="file-modal-close" onClick={onClose}>×</button>
-        </div>
-        <div className="file-modal-body">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+      <div className="modal-header" style={{ backgroundColor: getFileColor(file.mimeType) }}>
+  <div className="file-info">
+    <div className="file-icon">
+      {getFileIcon(file.mimeType)}
+    </div>
+    <div className="file-name-wrapper">
+      <h3>{file.name}</h3>
+      <p className="file-type">{file.mimeType}</p>
+    </div>
+  </div>
+  <button className="close-btn" onClick={onClose} aria-label="Close">
+    <X size={24} />
+  </button>
+</div>
+        <div className="modal-body">
           {content}
         </div>
-        <div className="file-modal-footer">
-      {file.webContentLink && (
-        <a 
-          href={file.webContentLink} 
-          download={file.name} 
-          className="file-modal-download-btn"
-          onClick={handleDownload}
-        >
-          Download {fileStats?.downloads && `(${fileStats.downloads})`}
-        </a>
-      )}
-      {/* Add stats display if available */}
-      {fileStats && (
-        <div className="file-stats">
-          <span>Views: {fileStats.views}</span>
-          <span>Downloads: {fileStats.downloads}</span>
-          <span>Unique users: {fileStats.uniqueSessions}</span>
+
+        <div className="modal-footer">
+          <div className="file-stats">
+            <div className="stat-item">
+              <Eye size={16} />
+              <span>{fileStats?.views || 0}</span>
+            </div>
+            <div className="stat-item">
+              <Download size={16} />
+              <span>{fileStats?.downloads || 0}</span>
+            </div>
+            <div className="stat-item">
+              <Users size={16} />
+              <span>{fileStats?.uniqueSessions || 0}</span>
+            </div>
+            {fileStats?.lastAccess && (
+              <div className="stat-item">
+                <Clock size={16} />
+                <span>{new Date(fileStats.lastAccess).toLocaleDateString()}</span>
+              </div>
+            )}
+          </div>
+
+          <div className="action-buttons">
+            {file.webContentLink && (
+              <button onClick={handleDownload} className="download-btn">
+                <Download size={16} /> Download
+              </button>
+            )}
+            <button onClick={onClose} className="close-btn">
+              Close
+            </button>
+          </div>
         </div>
-      )}
-      <button className="file-modal-close-btn" onClick={onClose}>
-        Close
-      </button>
-    </div>
       </div>
     </div>
   );
 };
+
 export default FileViewerModal;

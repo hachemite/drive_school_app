@@ -1,46 +1,46 @@
 
-Course Material Integration (Already done in server.js)
+// Course Material Integration (Already done in server.js)
 
-Fetch PDFs/videos from Drive.
+// Fetch PDFs/videos from Drive.
 
 Improvement: Add error handling for missing files.
 
-Search & Filter (Basic version)
+// Search & Filter (Basic version)
 
-Client-side search using JavaScript (no server cost).
+// Client-side search using JavaScript (no server cost).
 
-Filter by file type (PDF/video) using Drive’s mimeType.
+// Filter by file type (PDF/video) using Drive’s mimeType.
 
-Grid/List View Toggle
+// Grid/List View Toggle
 
 Pure CSS/JS toggle for better UX. Save preference in localStorage.
 
 Dark Mode Toggle
 
-CSS variables + JS. Save preference in localStorage.
+// CSS variables + JS. Save preference in localStorage.
 
-Dynamic Breadcrumbs
+// Dynamic Breadcrumbs
 
-Use Drive’s parents field to show folder hierarchy.
+// Use Drive’s parents field to show folder hierarchy.
 
 Mobile Optimization
 
 Responsive CSS (Flexbox/Grid). Test on Chrome DevTools.
 
 Phase 2: Nice-to-Have (Still Free)
-Pinned/Recommended Resources
+* Pinned/Recommended Resources
 
 Hardcode a few "pinned" file IDs in .env. Highlight them in the UI.
 
-Download/View Stats
+// Download/View Stats
 
-Use Drive’s webViewLink + webContentLink to track clicks (client-side).
+// Use Drive’s webViewLink + webContentLink to track clicks (client-side).
 
 FAQ Section
 
 Static HTML page with common questions.
 
-Simple Bookmarking
+// Simple Bookmarking
 
 Save scroll positions in localStorage (per document).
 
@@ -54,3 +54,35 @@ Use Firebase Free Tier (Firestore) for comments.
 Use Google Forms or mailto: links to email instructors.
 
 Announcements
+
+
+
+Error Handling:
+
+Implement more consistent error handling patterns across components
+
+Consider a global error boundary for the application
+
+Performance:
+
+Add memoization to prevent unnecessary re-renders, especially in list components
+
+Consider virtualized lists for large file/folder displays
+
+Accessibility:
+
+Add proper ARIA attributes to modals and interactive elements
+
+Ensure keyboard navigation works properly, especially in the file viewer
+
+Type Safety:
+
+Consider creating more specific types for different file types (images, documents, etc.)
+
+Add prop-type validation where missing
+
+Testing:
+
+Add unit tests for the modal's file type detection and rendering logic
+
+Test the drives manager form validation and submission

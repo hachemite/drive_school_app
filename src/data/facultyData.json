@@ -1,0 +1,12 @@
+[
+    { "name": "Mohammed BERRADA", "specialty": "Informatique", "email": "mohammed.berrada@gmail.com" },
+    { "name": "El Mehdi MLLOULI", "specialty": "Informatique Embarquée" },
+    { "name": "Said MAZER", "specialty": "Télécoms" },
+    { "name": "Said HRAOUI", "specialty": "Réseaux et Sécurité Informatique" },
+    { "name": "Meryem AMANE", "specialty": "Informatique & IA" },
+    { "name": "Oussama EL GANNOUR", "specialty": "Informatique & IA" },
+    { "name": "Kaouthar CHETIOUI", "specialty": "Réseaux et Sécurité Informatique" },
+    { "name": "Hakim EL FADILI", "specialty": "Réseaux et Sécurité Informatique" },
+    { "name": "Youness BALBOUL", "specialty": "Télécoms" },
+    { "name": "Ahmed YOUSSFI", "specialty": "Génie Mathématique Appliquées" }
+]

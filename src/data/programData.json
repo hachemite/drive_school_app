@@ -1,0 +1,83 @@
+[
+    {
+      "year": 1,
+      "semesters": [
+        {
+          "title": "Semestre 1",
+          "modules": [
+            "Statistique inférentielle",
+            "Programmation Orientée Objet en JAVA & Complexité",
+            "Fondements de réseaux & Systèmes d'exploitation",
+            "Systèmes d'Information et Bases de Données",
+            "Fondements de l'IA & UML1",
+            "Langues Etrangères (Anglais/Français)",
+            "Compétences digitales"
+          ]
+        },
+        {
+          "title": "Semestre 2",
+          "modules": [
+            "Services Réseaux & cryptographie",
+            "Python & Applications à l'IA",
+            "Administration Réseau et Système",
+            "Technologies Web",
+            "API JAVA",
+            "Langues Etrangères (Anglais/Français)",
+            "Éveil Culturel : Histoire, Arts et Artisanat du Maroc"
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2,
+      "semesters": [
+        {
+          "title": "Semestre 3",
+          "modules": [
+            "Sécurité des Réseaux et Systèmes",
+            "SGBD Oracle (Administration & PL/SQL)",
+            "Feature Engineering & Machine Learning",
+            "Cloud & DevOps & Virtualisation",
+            "UML2 & Design Patterns",
+            "Langues Etrangères (Français/Anglais)",
+            "Outils de l'IA dans le domaine de l'Entreprise et de l'Ingénierie"
+          ]
+        },
+        {
+          "title": "Semestre 4",
+          "modules": [
+            "Techniques de Compilation et Théorie des Graphes",
+            "DevNet & IOT",
+            "Technologies JEE & Android",
+            "Techniques de Hacking",
+            "Deep Learning & Traitement du Langage Naturel (NLP)",
+            "Langues Etrangères (Français/English for business)",
+            "Management des Entreprises et des Projets"
+          ]
+        }
+      ]
+    },
+    {
+      "year": 3,
+      "semesters": [
+        {
+          "title": "Semestre 5",
+          "modules": [
+            "Big Data Analytics",
+            "IA avancée",
+            "Business Intelligence & Data Mining",
+            "ERP & Frameworks de développement Web et JEE",
+            "Blockchain & Techniques de gestion des incidents",
+            "Langues Etrangères (Français/Anglais)",
+            "Développement personnel dans le monde socio économique"
+          ]
+        },
+        {
+          "title": "Semestre 6",
+          "modules": [
+            "Projet de Fin d'Études (PFE)"
+          ]
+        }
+      ]
+    }
+  ]

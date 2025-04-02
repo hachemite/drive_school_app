@@ -1,184 +1,258 @@
 /* FileViewerModal.css */
-.file-modal-overlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1050;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
+  z-index: 1000;
 }
-  
-.file-modal-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-  
-.file-modal-container {
-  background-color: #fff;
-  border-radius: 8px;
-  max-width: 90%;
-  width: 800px;
+
+.modal-content {
+  background-color: #EEF1DA;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 900px;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
-  
-.file-modal-header {
-  padding: 15px 20px;
-  border-bottom: 1px solid #e5e5e5;
+
+.modal-header {
+  padding: 16px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #5a5f7c;
 }
-  
-.file-modal-title {
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-icon {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+}
+
+.file-info h3 {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 70vw;
 }
-  
-.file-modal-close {
+
+.file-info .file-type {
+  margin: 4px 0 0;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.close-btn {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  color: #5a5f7c;
   cursor: pointer;
-  padding: 0;
-  line-height: 1;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
 }
-  
-.file-modal-body {
+
+.close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal-body {
   flex: 1;
   overflow: auto;
-  padding: 20px;
-  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #F9E4B7;
 }
-  
-.file-modal-footer {
-  padding: 15px 20px;
-  border-top: 1px solid #e5e5e5;
+
+.image-container,
+.video-container,
+.iframe-container {
+  width: 100%;
+  height: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.video-container video {
+  max-width: 100%;
+  max-height: 60vh;
+  border-radius: 8px;
+}
+
+.iframe-container iframe {
+  width: 100%;
+  height: 60vh;
+  border: none;
+  border-radius: 8px;
+}
+
+.fallback-content {
+  padding: 40px;
+  text-align: center;
+  color: #5a5f7c;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
+  background-color: #D5E5D5;
 }
 
 .file-stats {
   display: flex;
-  gap: 15px;
-  color: #666;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: #5a5f7c;
   font-size: 0.9rem;
 }
 
-.file-stats span {
-  display: inline-flex;
+.stat-item {
+  display: flex;
   align-items: center;
+  gap: 6px;
 }
 
-.preview-container {
-  max-width: 100%;
-  max-height: 60vh;
-  object-fit: contain;
-}
-  
-.preview-iframe {
-  width: 100%;
-  height: 60vh;
-  border: none;
-}
-  
-.file-modal-download-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  cursor: pointer;
-  text-decoration: none;
-}
-  
-.file-modal-download-btn:hover {
-  background-color: #0069d9;
-  color: white;
-  text-decoration: none;
-}
-  
-.file-modal-close-btn {
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  cursor: pointer;
-}
-  
-.file-modal-close-btn:hover {
-  background-color: #5a6268;
-}
-  
-.preview-iframe {
-  width: 100%;
-  height: 70vh;
-  border: none;
-}
-  
-.image-preview-container {
+.action-buttons {
   display: flex;
-  justify-content: center;
+  gap: 12px;
+}
+
+.download-btn {
+  background-color: #F6B93B;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
   align-items: center;
-  height: 70vh;
+  gap: 6px;
+  transition: background-color 0.2s;
 }
-  
-.preview-image {
-  max-height: 70vh;
-  max-width: 100%;
-  object-fit: contain;
+
+.download-btn:hover {
+  background-color: #FAD7A1;
 }
-  
-.text-preview {
-  max-height: 70vh;
-  overflow: auto;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-  
-.binary-file-preview, .fallback-preview {
-  height: 70vh;
+
+/* Add this to your FileViewerModal.css */
+.close-btn {
+  background: none;
+  border: none;
+  color: #5a5f7c;
+  cursor: pointer;
+  padding: 12px; /* Increased padding for better touch target */
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  min-width: 48px; /* Minimum touch target size */
+  min-height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Add a media query specifically for mobile */
+@media (max-width: 768px) {
+  .modal-header {
+    padding: 12px 16px;
+  }
+  
+  .close-btn {
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .close-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.close-btn:hover {
+  background-color: #C7D9DD;
 }
 
 @media (max-width: 768px) {
-  .file-modal-container {
-      width: 95%;
-  }
-    
-  .preview-iframe {
-      height: 50vh;
+  .modal-content {
+    width: 95%;
+    max-height: 85vh;
   }
 
-  .file-modal-footer {
-      flex-direction: column;
-      align-items: stretch;
+  .modal-footer {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .file-stats {
-      flex-direction: column;
-      gap: 5px;
-      text-align: center;
+    justify-content: center;
+  }
+
+  .action-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+.file-name-wrapper {
+  flex: 1;
+  min-width: 0; /* Allows text truncation to work */
+}
+
+.file-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%; /* Changed from 70vw to 100% */
+}
+
+@media (max-width: 768px) {
+  .file-info h3 {
+    font-size: 1rem;
+  }
+  
+  .file-info .file-type {
+    font-size: 0.7rem;
+  }
+  
+  .file-icon {
+    padding: 6px;
   }
 }

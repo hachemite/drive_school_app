@@ -4,30 +4,35 @@ import Navbar from './components/Navbar';
 import { routes } from './routes';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { Location } from 'history';
-
+import "./App.css"
 const App: React.FC = () => {
 
 
   return (
     <Router key={window.location.pathname}>
-      <Navbar />
-      <Switch>
-        {routes.map((route, index) => {
-          const Component = route.component; // Capitalized because it's used as JSX
-          if (!Component) return null;
-          return (
-            <Route
-              key={index}
-              exact={route.exact}
-              path={route.path}
-              render={(props: any) => (
-                <ErrorBoundary fallback={<div>Error loading page</div>}>
-                  <Component {...props} />
-                </ErrorBoundary>
-              )}
-            />
-          );
-        })}      </Switch>
+      <div className="flex">
+        <Navbar />
+        <div className="flex-1 p-4">
+          <Switch>
+            {routes.map((route, index) => {
+              const Component = route.component; // Capitalized because it's used as JSX
+              if (!Component) return null;
+              return (
+                <Route
+                  key={index}
+                  exact={route.exact}
+                  path={route.path}
+                  render={(props: any) => (
+                    <ErrorBoundary fallback={<div>Error loading page</div>}>
+                      <Component {...props} />
+                    </ErrorBoundary>
+                  )}
+                />
+              );
+            })}      
+          </Switch>
+        </div>
+      </div>
     </Router>
   );
 };

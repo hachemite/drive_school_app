@@ -1,0 +1,11 @@
+/* Example for Breadcrumbs */
+.breadcrumb-item {
+    color: #ADB2D4;
+    transition: color 0.2s;
+  }
+  .breadcrumb-item:hover {
+    color: #5a5f7c;
+  }
+  .breadcrumb-separator {
+    color: #C7D9DD;
+  }
