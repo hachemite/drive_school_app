@@ -67,7 +67,7 @@ const CommunicationPanel = () => {
     };
 
     try {
-      const APP_ID = process.env.REACT_APP_GOOGLE_SCRIPT_ID || 'AKfycbzUVmFydAgvLKgF2jxa8Qfbg_zthlH_nYZSXYN1XcEM8AcjnS-LLzBmQXBNQlmClW9Tdg';
+      const APP_ID = process.env.REACT_APP_GOOGLE_SCRIPT_ID ;
       const baseURL = `https://script.google.com/macros/s/${APP_ID}/exec`;
       
       const formDataToSend = new URLSearchParams();
