@@ -87,8 +87,8 @@ const FileViewerModal: React.FC<FileViewerModalProps> = ({ file, onClose, addRec
 
     // Fetch file statistics
     const loadStats = async () => {
-      const stats = await fetchFileStats(file.id);
-      setFileStats(stats);
+      const fileStats = await fetchFileStats(file.id);
+      setFileStats(fileStats);
     };
 
     loadStats();
