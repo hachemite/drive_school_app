@@ -1,30 +1,286 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    
+    <!-- Core Meta Tags -->
+    <title>3IACN - Formation Ingénierie Informatique, IA et Confiance Numérique | ENSA Fès</title>
+    <meta name="description" content="Formation d'excellence en ingénierie informatique à l'ENSA Fès, spécialisée en intelligence artificielle et sécurité numérique. Programme complet sur 3 ans avec stages pratiques et expertise en cybersécurité." />
+    
+    <!-- Enhanced Keywords - More comprehensive and targeted -->
+    <meta name="keywords" content="ENSA Fès, 3IACN, intelligence artificielle, cybersécurité, ingénierie informatique, formation ingénieur Maroc, IA Maroc, confiance numérique, études informatiques, big data, machine learning, deep learning, python, java, web development, blockchain, cloud computing, devops, IoT, sécurité des réseaux" />
+    
+    <!-- Additional SEO Tags -->
+    <meta name="geo.region" content="MA-03" />
+    <meta name="geo.placename" content="Fès" />
+    <meta name="geo.position" content="34.0181;-5.0078" />
+    <meta name="ICBM" content="34.0181, -5.0078" />
+    
+    <!-- Mobile Specific -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    
+    <!-- Open Graph / Facebook - Enhanced -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://threeiacn-ensaf-app.onrender.com/" />
+    <meta property="og:site_name" content="ENSA Fès - 3IACN" />
+    <meta property="og:title" content="3IACN - Formation d'Excellence en Ingénierie Informatique et IA | ENSA Fès" />
+    <meta property="og:description" content="Découvrez notre formation d'excellence en informatique, spécialisée dans l'IA et la sécurité numérique. Rejoignez-nous pour façonner l'avenir du numérique." />
+    <meta property="og:image" content="https://threeiacn-ensaf-app.onrender.com/logo192.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
+    
+    <!-- Twitter - Enhanced -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ENSAFes" />
+    <meta name="twitter:creator" content="@ENSAFes" />
+    <meta name="twitter:url" content="https://threeiacn-ensaf-app.onrender.com/" />
+    <meta name="twitter:title" content="3IACN - Formation Ingénieur en IA et Cybersécurité | ENSA Fès" />
+    <meta name="twitter:description" content="Formation d'ingénieur en informatique avec spécialisation en IA et confiance numérique. Programme sur 3 ans à l'ENSA Fès." />
+    <meta name="twitter:image" content="https://threeiacn-ensaf-app.onrender.com/logo192.png" />
+    
+    <!-- Canonical and Alternate URLs -->
+    <link rel="canonical" href="https://threeiacn-ensaf-app.onrender.com/" />
+    <link rel="alternate" hreflang="fr" href="https://threeiacn-ensaf-app.onrender.com/" />
+    <link rel="alternate" hreflang="en" href="https://threeiacn-ensaf-app.onrender.com/en/" />
+    <link rel="alternate" hreflang="ar" href="https://threeiacn-ensaf-app.onrender.com/ar/" />
+    <link rel="alternate" hreflang="x-default" href="https://threeiacn-ensaf-app.onrender.com/" />
+    
+    <!-- Robots and Crawling Controls -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    
+    <!-- Page Topic -->
+    <meta name="page-topic" content="Éducation, Formation Ingénieur, Intelligence Artificielle" />
+    <meta name="subject" content="Formation Universitaire en Ingénierie Informatique" />
+    
+    <!-- Authors and Copyright -->
+    <meta name="hazzine Said" content="ENSA Fès" />
+    <meta name="copyright" content="© 2025 ENSA Fès" />
+    <meta name="owner" content="École Nationale des Sciences Appliquées de Fès" />
+    
+    <!-- Content Rating -->
+    <meta name="rating" content="general" />
+    
+    <!-- PWA Support -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>3iacn Course Website</title>
+    
+    <!-- Performance Preconnect and DNS Prefetch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    
+    <!-- Structured Data / Schema.org - Enhanced with Multiple Schemas -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "3IACN - ENSA Fès",
+        "alternateName": "Ingénierie Informatique, Intelligence Artificielle et Confiance Numérique",
+        "description": "Formation d'excellence en ingénierie informatique, intelligence artificielle et confiance numérique",
+        "url": "https://threeiacn-ensaf-app.onrender.com/",
+        "logo": "https://threeiacn-ensaf-app.onrender.com/logo192.png",
+        "sameAs": [
+          "https://web.facebook.com/p/%C3%89cole-Nationale-des-Sciences-Appliqu%C3%A9es-de-F%C3%A8s-100064166196367",
+          "https://x.com/dodoracula",
+          "https://www.linkedin.com/school/ensa-fes/",
+          "https://www.youtube.com/channel/ENSAFes"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Route d'Imouzzer",
+          "addressLocality": "Fès",
+          "addressRegion": "Fès-Meknès",
+          "postalCode": "30000",
+          "addressCountry": "MA"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "34.0181",
+          "longitude": "-5.0078"
+        },
+        "telephone": "+212535600403",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Programmes d'études",
+          "itemListElement": [
+            {
+              "@type": "EducationalOccupationalProgram",
+              "name": "Ingénierie Informatique, Intelligence Artificielle et Confiance Numérique",
+              "description": "Formation sur 3 ans couvrant le développement informatique, l'IA et la cybersécurité",
+              "timeToComplete": "P3Y",
+              "programPrerequisites": "Baccalauréat scientifique ou technique, Concours d'entrée",
+              "occupationalCategory": "Information Technology",
+              "educationalProgramMode": "full-time",
+              "educationalCredentialAwarded": "Diplôme d'Ingénieur d'État",
+              "provider": {
+                "@type": "EducationalOrganization",
+                "name": "École Nationale des Sciences Appliquées de Fès",
+                "sameAs": "https://ensaf.ac.ma"
+              }
+            }
+          ]
+        }
+      }
+    </script>
+    
+    <!-- Course Specific Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "3IACN - Ingénierie Informatique, IA et Confiance Numérique",
+        "description": "Programme de formation d'ingénieurs spécialisés en informatique, intelligence artificielle et cybersécurité.",
+        "provider": {
+          "@type": "Organization",
+          "name": "École Nationale des Sciences Appliquées de Fès",
+          "sameAs": "https://ensaf.ac.ma"
+        },
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "full-time",
+          "duration": "P3Y",
+          "inLanguage": "fr"
+        },
+        "courseCode": "3IACN",
+        "educationalCredentialAwarded": "Diplôme d'Ingénieur d'État",
+        "occupationalCredentialAwarded": "Ingénieur en Informatique spécialisé en IA et Cybersécurité",
+        "competencyRequired": "Mathématiques, Programmation, Logique",
+        "teaches": [
+          "Intelligence Artificielle",
+          "Machine Learning",
+          "Deep Learning",
+          "Cybersécurité",
+          "Développement Web",
+          "Programmation Java",
+          "Python",
+          "Blockchain",
+          "Cloud Computing",
+          "DevOps"
+        ]
+      }
+    </script>
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollegeOrUniversity",
+        "name": "École Nationale des Sciences Appliquées de Fès",
+        "alternateName": "ENSA Fès",
+        "url": "https://ensaf.ac.ma",
+        "logo": "https://threeiacn-ensaf-app.onrender.com/logo192.png",
+        "sameAs": [
+          "https://www.facebook.com/ENSAFes",
+          "https://twitter.com/ENSAFes"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Route d'Imouzzer",
+          "addressLocality": "Fès",
+          "addressRegion": "Fès-Meknès",
+          "postalCode": "30000",
+          "addressCountry": "MA"
+        }
+      }
+    </script>
+    
+    <!-- WebSite Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://threeiacn-ensaf-app.onrender.com/",
+        "name": "3IACN - ENSA Fès",
+        "description": "Site officiel de la filière 3IACN à l'ENSA de Fès",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://threeiacn-ensaf-app.onrender.com/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+    
+    <!-- Updated BreadcrumbList Schema based on actual routes -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://threeiacn-ensaf-app.onrender.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Communication",
+            "item": "https://threeiacn-ensaf-app.onrender.com/Communication"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Drives",
+            "item": "https://threeiacn-ensaf-app.onrender.com/drives"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Recent",
+            "item": "https://threeiacn-ensaf-app.onrender.com/recent"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Favorites",
+            "item": "https://threeiacn-ensaf-app.onrender.com/favorites"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "FAQ",
+            "item": "https://threeiacn-ensaf-app.onrender.com/faq"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://threeiacn-ensaf-app.onrender.com/about"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Drive Manager",
+            "item": "https://threeiacn-ensaf-app.onrender.com/drivemanager"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "1st Year Drive",
+            "item": "https://threeiacn-ensaf-app.onrender.com/drive/1%20st%20Year"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Test Drive",
+            "item": "https://threeiacn-ensaf-app.onrender.com/drive/testDrive"
+          }
+        ]
+      }
+    </script>
+    
+    <!-- Sitemap Hint -->
+    <link rel="sitemap" type="application/xml" href="https://threeiacn-ensaf-app.onrender.com/sitemap.xml" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
